@@ -1,4 +1,7 @@
 #include "pfm.h"
+#include <fstream>
+#include <iostream>
+using namespace std;
 
 PagedFileManager *PagedFileManager::_pf_manager = nullptr;
 
@@ -16,15 +19,50 @@ PagedFileManager::PagedFileManager(const PagedFileManager &) = default;
 PagedFileManager &PagedFileManager::operator=(const PagedFileManager &) = default;
 
 RC PagedFileManager::createFile(const std::string &fileName) {
-    return -1;
+
+	//Check if file exists
+	fstream file(fileName.c_str());
+	if (file.good()) {
+		return FAILURE;
+	}
+	
+	//Open the file
+	file.open(fileName, ios::out);
+
+	//If file doesnt get created
+	if (!file) {
+		return FAILURE;
+	}
+
+	//Close the file
+	//file.close();
+
+    return SUCCESS;
 }
 
 RC PagedFileManager::destroyFile(const std::string &fileName) {
-    return -1;
+	
+	if (remove(fileName.c_str()) != SUCCESS) {
+		return FAILURE;
+	}
+	return SUCCESS;
+	
 }
 
 RC PagedFileManager::openFile(const std::string &fileName, FileHandle &fileHandle) {
-    return -1;
+	//Check if file exists
+	fstream file(fileName.c_str());
+	if (file.bad()) {
+		return FAILURE;
+	}
+
+	//Open the file
+	file.open(fileName, ios::out);
+
+	if (file.is_open()) {
+		return SUCCESS;
+	}
+	return FAILURE;
 }
 
 RC PagedFileManager::closeFile(FileHandle &fileHandle) {
