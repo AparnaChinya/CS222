@@ -9,7 +9,7 @@
 #include <iomanip>
 #include <cassert>
 #include <ctime>
-#include <sys/resource.h>
+
 #include <set>
 #include "rm.h"
 #include "../rbf/test_util.h"

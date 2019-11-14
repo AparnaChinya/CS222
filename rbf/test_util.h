@@ -3,7 +3,7 @@
 #include <string>
 #include <cassert>
 #include <sys/stat.h>
-#include <sys/resource.h>
+
 #include <cstdlib>
 #include <cstring>
 #include <stdexcept>
@@ -878,7 +878,7 @@ void setBit(byte &src, bool value, unsigned offset) {
     }
 }
 
-void setAttrNull(void *src, ushort attrNum, bool isNull) {
+void setAttrNull(void *src, int attrNum, bool isNull) {
     unsigned bytes = 0;
     unsigned pos = 0;
     getByteOffset(attrNum, bytes, pos);
