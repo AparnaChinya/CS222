@@ -36,3 +36,5 @@ tbl_*
 Tables
 Columns
 *_file
+*.suo
+/.vs
