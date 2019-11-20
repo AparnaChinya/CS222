@@ -35,7 +35,7 @@ RC PagedFileManager::createFile(const std::string &fileName) {
 	}
 
 	//Close the file
-	//file.close();
+	file.close();
 
     return SUCCESS;
 }

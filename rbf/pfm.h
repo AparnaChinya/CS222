@@ -12,6 +12,9 @@ typedef unsigned char byte;
 
 class FileHandle;
 
+#define SUCCESS 0
+#define FAILURE -1
+
 class PagedFileManager {
 public:
     static PagedFileManager &instance();                                // Access to the _pf_manager instance
